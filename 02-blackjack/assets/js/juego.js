@@ -40,6 +40,7 @@ const pedirCarta = () => {
     throw 'No hay carta en el deck';
   }
 
+
   const carta = deck.pop();
 
   console.log(deck);
@@ -47,7 +48,16 @@ const pedirCarta = () => {
   return carta;
 }
 
-
 // pedirCarta();
+const valorCarta = ( carta ) => {
+
+  const valor = carta.substring(0, carta.length - 1);
+  return ( isNaN(valor) ) ? 
+         ( valor === 'A') ? 11 : 10
+         : valor * 1;
+}
+
+const valor = valorCarta('KD');
+console.log({ valor });
 
 
