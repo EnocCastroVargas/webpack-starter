@@ -57,7 +57,7 @@ const valorCarta = ( carta ) => {
          : valor * 1;
 }
 
-const valor = valorCarta('KD');
+const valor = valorCarta( pedirCarta() );
 console.log({ valor });
 
 
