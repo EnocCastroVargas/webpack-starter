@@ -15,6 +15,7 @@ let puntosJugador = 0,
 // Referencias del HTML
 const btnPedir = document.querySelector('#btnPedir');
 const btnDetener = document.querySelector('#btnDetener');
+const btnNuevo = document.querySelector('#btnNuevo');
 
 const divCartasJugador     = document.querySelector('#jugador-cartas');
 const divCartasComputadora = document.querySelector('#computadora-cartas');
@@ -68,7 +69,6 @@ const valorCarta = ( carta ) => {
 
 // Turno de la computadora
 const turnoComputadora = ( puntosMinimos ) => {
-  
   do {
     
     const carta = pedirCarta();
@@ -87,6 +87,18 @@ const turnoComputadora = ( puntosMinimos ) => {
     }
 
   } while ( (puntosComputadora < puntosMinimos) && ( puntosMinimos <= 21 ) );
+
+  setTimeout(() => {
+    if ( puntosComputadora === puntosMinimos ) {
+      alert('Nadie gana :(');
+    } else if ( puntosMinimos > 21 ) {
+      alert('Computadora gana');
+    } else if ( puntosComputadora > 21 ) {
+      alert('Jugador gana');
+    } else {
+      alert('Computadora gana');
+    }
+  }, 10 );
 
 }
 
@@ -110,12 +122,14 @@ btnPedir.addEventListener('click', () => {
     btnPedir.disabled = true;
     btnDetener.disabled = true;
     turnoComputadora( puntosJugador );
-
   } else if ( puntosJugador === 21 ) {
     console.warn('21, genial!');
     btnPedir.disabled = true;
     btnDetener.disabled = true;
     turnoComputadora( puntosJugador );
+  } else if ( puntosComputadora === puntosJugador ) {
+    btnPedir.disabled = true;
+    btnDetener.disabled = true;
   }
 });
 
@@ -123,5 +137,24 @@ btnDetener.addEventListener('click', () => {
   btnPedir.disabled = true;
   btnDetener.disabled = true;
   turnoComputadora( puntosJugador );
+});
+
+btnNuevo.addEventListener('click', () => {
+
+  console.clear();
+  deck = [];
+  deck = crearDeck();
+
+  puntosJugador     = 0;
+  puntosComputadora = 0;
+  
+  puntosHTML[0].innerText = 0;
+  puntosHTML[1].innerText = 0;
+
+  divCartasComputadora.innerHTML = '';
+  divCartasJugador.innerHTML = '';
+  
+  btnPedir.disabled = false;
+  btnDetener.disabled = false;
 });
 
