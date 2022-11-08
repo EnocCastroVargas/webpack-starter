@@ -5,6 +5,18 @@
  * 2S = Two of Spades (Espadas)
  */
 
+//* Patrón Módulo
+(() => { // Función anónima auto-invocadas
+  'use strict'
+  
+  const personajes = ['Ana', 'Merci', 'Mei'];
+  console.log(personajes);
+
+})();
+
+
+
+
 let deck         = [];
 const tipos      = ['C', 'D', 'H', 'S'];
 const especiales = ['A', 'J', 'Q', 'K'];
